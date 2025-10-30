@@ -1,0 +1,25 @@
+[project]
+name = "pcloudkmerclusters"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "rlesiyon",email = "lesiyonr@msu.edu"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bitarray (>=3.7.2,<4.0.0)",
+    "numpy (>=2.3.4,<3.0.0)",
+    "bio (>=1.8.1,<2.0.0)",
+    "tqdm (>=4.67.1,<5.0.0)",
+    "argparse (>=1.4.0,<2.0.0)",
+    "rapidfuzz (>=3.14.1,<4.0.0)",
+    "matplotlib (>=3.10.7,<4.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "pcloudkmerclusters", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
