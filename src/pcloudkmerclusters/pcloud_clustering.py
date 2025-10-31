@@ -51,7 +51,7 @@ class Pcloud:
     def update_kmer_list(self):
         self.kmer_list.extend(self.core_set.keys())
 
-def pcloud_clustering(dict_json_file, output_file, lower, core, secondary, tertiary):
+def pcloud_clustering(seq_id, save_dir, lower, core, secondary, tertiary):
     '''
     Perform P-cloud clustering on the given oligos dictionary.
     - Initialize first P-cloud
@@ -65,6 +65,10 @@ def pcloud_clustering(dict_json_file, output_file, lower, core, secondary, terti
     5. tertiary: if core oligo in P-cloud > tertiary copies; 3nt differences to be included in outer layer
     return: list of Pcloud objects
     '''
+    # Make the output, and dict_json_file
+    dict_json_file = f"{save_dir}/{seq_id}.json" 
+    output_file = f"{save_dir}/{seq_id}.pkl"
+
     # load oligos occurences dictionary
     with open(dict_json_file, "r") as f:
         oligos_dic = json.load(f)

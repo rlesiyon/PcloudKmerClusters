@@ -81,10 +81,10 @@ def mixed_count(genome_sequence, n, oligo_length, fp):
     print(f'Mixed method memory usage: {round(total_size/1024/1024/1024, 5)} Gb')
     
     # write to json file; 
-    fp = fp.split('.fasta')[0]
-    with open(f'{fp}_oligo_occurences.json', 'w') as f:
+    fp = fp.split('.fasta')[0]   
+    with open(f'{fp}.json', 'w') as f:
         json.dump(oligo_occurence_hash_set, f)
-    return f'{fp}_oligo_occurences.json' 
+    return oligo_occurence_hash_set
 
 def direct_count(genome_sequence, n, oligo_length, fp):
     '''
@@ -159,11 +159,11 @@ def get_index_and_word(oligo_seq):
     return index2, oligo_seq[::-1] 
 
 
-def count_oligo(seq_id, method='mixed_count'):
-    seq_fp = f'../../data/{seq_id}.fasta'
+def count_oligo(save_dir, seq_id, method='mixed_count'):
+    seq_fp = f'{save_dir}/{seq_id}.fasta'
     if not Path(seq_fp).exists():
         download_fasta_sequence(seq_id, filename=seq_fp) 
-    count_oligo_occurences(seq_fp, method = method)  
+    return count_oligo_occurences(seq_fp, method = method)  
 
 if __name__ == "__main__":
     seq_id = "AP028058.1" # Candidatus Nasuia deltocephalinicola NCIN DNA, complete genome
